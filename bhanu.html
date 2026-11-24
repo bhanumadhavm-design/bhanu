@@ -1,0 +1,485 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bhanu | Student Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #080b14;
+    color: #f5f5f5;
+    line-height: 1.7;
+}
+
+:root {
+    --primary: #8b5cf6;
+    --secondary: #22d3ee;
+    --card: #111827;
+    --muted: #9ca3af;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 18px 8%;
+    background: rgba(8,11,20,.9);
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    border-bottom: 1px solid #202638;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--secondary);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 28px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: var(--secondary);
+}
+
+section {
+    padding: 100px 10%;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 6vw, 65px);
+    line-height: 1.2;
+    margin: 20px 0;
+}
+
+.gradient {
+    background: linear-gradient(90deg, #8b5cf6, #22d3ee);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero p, .about p {
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+.tag {
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #8b5cf6, #6366f1);
+    color: white;
+    text-decoration: none;
+    margin: 8px 8px 0 0;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px #8b5cf655;
+}
+
+.outline {
+    border: 1px solid var(--secondary);
+    background: transparent;
+}
+
+.hero-image {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 4px solid var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg,#171b34,#202c44);
+    box-shadow: 0 0 50px #8b5cf655;
+    font-size: 90px;
+}
+
+.heading {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.about {
+    text-align: center;
+    max-width: 850px;
+    margin: auto;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 22px;
+}
+
+.card {
+    background: var(--card);
+    padding: 28px;
+    border: 1px solid #252d40;
+    border-radius: 15px;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary);
+}
+
+.card h3 {
+    margin-bottom: 12px;
+    color: var(--secondary);
+}
+
+.card p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.skill {
+    background: #171d30;
+    border: 1px solid #303c59;
+    padding: 12px 24px;
+    border-radius: 8px;
+    transition: .3s;
+}
+
+.skill:hover {
+    background: var(--primary);
+    transform: scale(1.05);
+}
+
+.project-link {
+    color: var(--secondary);
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+}
+
+.contact {
+    text-align: center;
+}
+
+.contact p {
+    color: var(--muted);
+    margin-bottom: 15px;
+}
+
+footer {
+    padding: 25px;
+    text-align: center;
+    border-top: 1px solid #252d40;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: .7s;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media(max-width: 768px) {
+    nav {
+        padding: 15px 5%;
+    }
+
+    nav ul {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    nav a {
+        font-size: 11px;
+    }
+
+    .hero {
+        flex-direction: column-reverse;
+        justify-content: center;
+        text-align: center;
+        padding-top: 130px;
+    }
+
+    .hero-image {
+        width: 190px;
+        height: 190px;
+        font-size: 65px;
+    }
+
+    section {
+        padding: 80px 7%;
+    }
+
+    .heading {
+        font-size: 29px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Bhanu.</div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HOME -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <span class="tag">HELLO, WELCOME TO MY PORTFOLIO</span>
+        <h1>I'm <span class="gradient">Bhanu</span><br>
+        A Student & Future Developer</h1>
+
+        <p>
+            I'm a B.Tech Computer Science student specializing in
+            Artificial Intelligence and Machine Learning.
+            I enjoy learning programming, exploring new technologies,
+            and building innovative projects.
+        </p>
+
+        <a href="#projects" class="btn">Explore My Work</a>
+        <a href="#contact" class="btn outline">Contact Me</a>
+    </div>
+
+    <div class="hero-image">👨‍💻</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2 class="heading">About <span class="gradient">Me</span></h2>
+
+    <div class="about reveal">
+        <p>
+            I'm a passionate engineering student interested in
+            software development, artificial intelligence,
+            machine learning, and problem-solving.
+        </p>
+
+        <p>
+            Currently improving my programming skills in Python,
+            C++, and web development. My goal is to become a
+            skilled software developer and work on real-world
+            technology solutions.
+        </p>
+
+        <p><strong>Education:</strong> B.Tech – Computer Science & Engineering (AI & ML)</p>
+        <p><strong>Interests:</strong> Coding, AI, Web Development, IoT and Technology</p>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <h2 class="heading">My <span class="gradient">Skills</span></h2>
+
+    <div class="skills reveal">
+        <span class="skill">Python</span>
+        <span class="skill">C++</span>
+        <span class="skill">HTML</span>
+        <span class="skill">CSS</span>
+        <span class="skill">JavaScript</span>
+        <span class="skill">AI & ML</span>
+        <span class="skill">Git & GitHub</span>
+        <span class="skill">Problem Solving</span>
+        <span class="skill">IoT</span>
+        <span class="skill">UI/UX</span>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <h2 class="heading">My <span class="gradient">Projects</span></h2>
+
+    <div class="cards reveal">
+
+        <div class="card">
+            <h3>ExamSphere AI</h3>
+            <p>
+                An AI-powered educational platform that helps
+                students explore previous question papers,
+                practice quizzes, and access exam-related information.
+            </p>
+            <a class="project-link"
+               href="https://examsphere-ai-966500174162.asia-southeast1.run.app/"
+               target="_blank">View Project →</a>
+        </div>
+
+        <div class="card">
+            <h3>AgriGuard AI</h3>
+            <p>
+                An AI-based agriculture project designed to help
+                farmers identify crop diseases and pests using
+                image-based detection.
+            </p>
+            <a class="project-link" href="#contact">Know More →</a>
+        </div>
+
+        <div class="card">
+            <h3>xFarm AI</h3>
+            <p>
+                An agriculture platform concept connecting farmers
+                and buyers with crop health insights, market
+                intelligence, and smart recommendations.
+            </p>
+            <a class="project-link"
+               href="https://dashing-baklava-030612.netlify.app/"
+               target="_blank">View Project →</a>
+        </div>
+
+        <div class="card">
+            <h3>PG / Hostel Management</h3>
+            <p>
+                A responsive website concept that displays room
+                availability, facilities, food menus, hostel rules,
+                and contact information.
+            </p>
+            <a class="project-link"
+               href="https://bhanumadhavm-design.github.io/nestora/"
+               target="_blank">View Project →</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+    <h2 class="heading">My <span class="gradient">Achievements</span></h2>
+
+    <div class="cards reveal">
+
+        <div class="card">
+            <h3>Academic Achievement</h3>
+            <p>
+                Completed Intermediate education with 95% marks.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Technical Learning</h3>
+            <p>
+                Developing practical knowledge in programming,
+                AI, web development, and emerging technologies.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Project Development</h3>
+            <p>
+                Exploring real-world problems through
+                independent website and AI project development.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2 class="heading">Get In <span class="gradient">Touch</span></h2>
+
+    <div class="contact reveal">
+        <p>Have an idea or want to collaborate on a project?</p>
+        <p>Feel free to connect with me!</p>
+
+        <a href="mailto:yourmail@gmail.com" class="btn">
+            Send Email
+        </a>
+
+        <a href="https://github.com/yourusername"
+           target="_blank" class="btn outline">
+            GitHub
+        </a>
+
+        <a href="https://linkedin.com/in/yourusername"
+           target="_blank" class="btn outline">
+            LinkedIn
+        </a>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Bhanu | Designed & Developed with ❤️</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+    });
+});
+
+document.querySelectorAll(".reveal").forEach(element => {
+    observer.observe(element);
+});
+</script>
+
+</body>
+</html>
